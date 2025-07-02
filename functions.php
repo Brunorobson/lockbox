@@ -42,7 +42,19 @@ function config($chave = null)
 }
 
 
-function auth(){
-    if(!isset($_SESSION['auth'])) return false;
+function auth()
+{
+    if (!isset($_SESSION['auth'])) return false;
     return $_SESSION['auth'];
+}
+
+function old($campo)
+{
+    $post = $_POST;
+
+    if (isset($post[$campo])) {
+        return $post[$campo];
+    }
+
+    return '';
 }

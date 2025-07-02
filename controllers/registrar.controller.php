@@ -9,6 +9,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'confirmed',
             'unique:usuarios'
         ],
+        'email_confirmacao' => [
+            'required',
+            'email',
+            'confirmed'
+        ],
         'senha' => [
             'required',
             'min:8',
@@ -17,8 +22,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ]
     ], $_POST);
 
-    if ($validacao->naoPassou('registrar')) {
-        header('location: /login');
+    if ($validacao->naoPassou()) {
+        view('login');
         exit();
     }
 
@@ -37,5 +42,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     exit();
 }
 
-header('location: /login');
-exit();
+view('registrar');

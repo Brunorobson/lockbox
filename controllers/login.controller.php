@@ -1,8 +1,8 @@
 <?php
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $email = $_POST['email'] ?? '';
-    $senha = $_POST['senha'] ?? '';
+    $email = $_POST['email'];
+    $senha = $_POST['senha'];
 
     $validacao = Validacao::validar([
         'email' => [
@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ]
     ], $_POST);
 
-    if ($validacao->naoPassou('login')) {
+    if ($validacao->naoPassou()) {
         header('location: /login');
         exit();
     }
