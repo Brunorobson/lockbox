@@ -11,8 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ],
         'email_confirmacao' => [
             'required',
-            'email',
-            'confirmed'
+            'email'
         ],
         'senha' => [
             'required',
@@ -23,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     ], $_POST);
 
     if ($validacao->naoPassou()) {
-        view('login');
+        view('registrar');
         exit();
     }
 

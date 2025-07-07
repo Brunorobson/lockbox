@@ -37,49 +37,55 @@ class Validacao
         )->fetch();
 
         if ($resultado) {
-            $this->validacoes[] = "O $campo já existe";
+            $this->addError($campo, "O $campo já existe");
         }
     }
     private function required($campo, $valor)
     {
         if (strlen($valor) == 0) {
-            $this->validacoes[] = "O campo $campo é obrigatório";
+            $this->addError($campo, "O campo $campo é obrigatório");
         }
     }
 
     private function email($campo, $valor)
     {
         if (!filter_var($valor, FILTER_VALIDATE_EMAIL)) {
-            $this->validacoes[] = "O campo $campo deve ser um email válido";
+            $this->addError($campo, "O campo $campo deve ser um email válido");
         }
     }
 
     private function confirmed($campo, $valor, $valorDeConfirmacao)
     {
         if ($valor != $valorDeConfirmacao) {
-            $this->validacoes[] = "Os campos $campo de confirmação esta diferente";
+            $this->addError($campo, "Os campos $campo de confirmação esta diferente");
         }
     }
 
     private function min($min, $campo, $valor)
     {
         if (strlen($valor) <= $min) {
-            $this->validacoes[] = "O campo $campo deve ter pelo menos $min caracteres";
+            $this->addError($campo, "O campo $campo deve ter pelo menos $min caracteres");
         }
     }
 
     private function max($max, $campo, $valor)
     {
         if (strlen($valor) > $max) {
-            $this->validacoes[] = "O campo $campo deve ter no maximo $max caracteres";
+            $this->addError($campo, "O campo $campo deve ter no maximo $max caracteres");
         }
     }
     private function strong($campo, $valor)
     {
         if (!strpbrk($valor, '!@#$%()*^&')) {
-            $this->validacoes[] = "O campo $campo deve conter pelo menos um caractere especial";
+            $this->addError($campo, "O campo $campo deve conter pelo menos um caractere especial");
         }
     }
+
+    private function addError($campo, $erro)
+    {
+        $this->validacoes[$campo][] = $erro;
+    }
+
     public function naoPassou($nomeCustomizado = null)
     {
         $chave = 'validacoes';
