@@ -1,5 +1,18 @@
 <?php
 
+use App\Controllers\IndexController;
+use App\Controllers\LoginController;
+use Core\Route;
+
+(new Route())
+
+    ->get('/', IndexController::class)
+
+    ->get('/login', LoginController::class, 'index')
+    ->post('/login', LoginController::class, 'login')
+
+    ->run();
+
 $controller = str_replace('/', '', parse_url($_SERVER['REQUEST_URI'])['path']);
 
 if (!$controller) $controller = 'index';
