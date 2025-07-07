@@ -109,8 +109,7 @@
                                         <circle cx="16.5" cy="7.5" r=".5" fill="currentColor"></circle>
                                     </g>
                                 </svg>
-                                <input type="password" name="senha" <input type="text" name="email_confirmacao"
-                                    value="<?= old('senha') ?>" />
+                                <input type="password" name="senha" />
                             </label>
                         </label>
                         <?php if (isset($validacoes['senha'])): ?>

@@ -1,6 +1,12 @@
 <?php
 
+use App\Models\Usuario;
+use Core\Database;
+use Core\Validacao;
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $database = new Database(config('database'));
+
     $email = $_POST['email'];
     $senha = $_POST['senha'];
 
@@ -26,18 +32,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         params: compact('email')
     )->fetch();
 
-    if ($usuario) {
-        if (!password_verify($_POST['senha'], $usuario->senha)) {
-            flash()->push('validacoes_login', ['Usuario ou Senha incorretas!']);
-            header('location: /login');
-            exit();
-        }
-
-
+    if ($usuario && !password_verify($_POST['senha'], $usuario->senha)) {
         $_SESSION['auth'] = $usuario;
         flash()->push('mensagem', 'Você está logado ' . $usuario->nome);
         header('location: /');
         exit();
+    } else {
+        flash()->push('validacoes', ['email' => ['Usuario ou senha incorretas!']]);
     }
 }
 

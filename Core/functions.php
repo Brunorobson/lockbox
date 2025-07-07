@@ -1,11 +1,18 @@
 <?php
 
+use Core\Flash;
+
+function base_path($path)
+{
+    return __DIR__ . '/../' . $path;
+}
+
 function view($view, $data = [])
 {
     foreach ($data as $key => $value) {
         $$key = $value;
     }
-    require "Views/template/app.php";
+    require base_path("Views/template/app.php");
 }
 
 function dump(...$dump)
@@ -34,7 +41,7 @@ function flash()
 
 function config($chave = null)
 {
-    $config = require 'config.php';
+    $config = require base_path('config.php');
     if (strlen($chave) > 0) {
         return $config[$chave];
     }
