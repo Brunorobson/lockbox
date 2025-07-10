@@ -49,7 +49,20 @@ class Route
 
     public function run()
     {
+        $uri = '/' . str_replace('/', '', parse_url($_SERVER['REQUEST_URI'])['path']);
+        $httpMethod = $_SERVER['REQUEST_METHOD'];
 
-        dd($this->routes);
+        if (!isset($this->routes[$httpMethod][$uri])) {
+            abort(404);
+        }
+
+        $routeInfo = $this->routes[$httpMethod][$uri];
+
+
+        $class = $routeInfo['class'];
+        $method = $routeInfo['method'];
+
+        $c = new $class;
+        $c->$method();
     }
 }
