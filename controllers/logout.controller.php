@@ -3,5 +3,5 @@
 //$_SESSION['auth'];
 
 session_destroy();
-header('location: /login');
+return redirect('/login');
 exit();

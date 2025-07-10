@@ -45,7 +45,7 @@ class LoginController
             return view('login');
         }
         $_SESSION['auth'] = $usuario;
-        flash()->push('mensagem', 'Você está logado ' . $usuario->nome);
-        return view('dashboard');
+        flash()->push('mensagem', 'Seja bem vindo ' . $usuario->nome . '!');
+        return redirect('dashboard');
     }
 }

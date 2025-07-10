@@ -48,6 +48,11 @@ function config($chave = null)
     return $config;
 }
 
+function redirect($uri)
+{
+    return header("Location: {$uri}");
+}
+
 
 function auth()
 {
