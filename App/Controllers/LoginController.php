@@ -40,11 +40,13 @@ class LoginController
             params: compact('email')
         )->fetch();
 
-        if (!($usuario && !password_verify($_POST['senha'], $usuario->senha))) {
+        if (!($usuario && password_verify($_POST['senha'], $usuario->senha))) {
             flash()->push('validacoes', ['email' => ['Usuario ou senha incorretas!']]);
             return view('login');
         }
+
         $_SESSION['auth'] = $usuario;
+
         flash()->push('mensagem', 'Seja bem vindo ' . $usuario->nome . '!');
         return redirect('dashboard');
     }

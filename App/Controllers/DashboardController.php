@@ -6,6 +6,12 @@ class DashboardController
 {
     public function __invoke()
     {
-        echo "dashboardcontroller.__invoke";
+
+        if (!auth()) {
+            return redirect('login');
+        }
+
+
+        view('dashboard');
     }
 }

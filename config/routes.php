@@ -16,7 +16,7 @@ use Core\Route;
 
     ->get('/dashboard', DashboardController::class)
 
-    ->get('/logout', [LogoutController::class, 'logout'])
+    ->get('/logout', LogoutController::class)
 
     ->get('/registrar', [RegisterController::class, 'index'])
     ->post('/registrar', [RegisterController::class, 'register'])
