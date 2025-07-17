@@ -12,6 +12,6 @@ class DashboardController
         }
 
 
-        view('dashboard');
+        view('dashboard', ['user' => auth()]);
     }
 }
