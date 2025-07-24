@@ -8,12 +8,12 @@ function base_path($path)
     return __DIR__ . '/../' . $path;
 }
 
-function view($view, $data = [])
+function view($view, $data = [], $template = 'app')
 {
     foreach ($data as $key => $value) {
         $$key = $value;
     }
-    require base_path("Views/template/app.php");
+    require base_path("Views/template/$template.php");
 }
 
 function dump(...$dump)
