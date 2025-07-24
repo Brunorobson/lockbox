@@ -48,6 +48,6 @@ class LoginController
         $_SESSION['auth'] = $usuario;
 
         flash()->push('mensagem', 'Seja bem vindo ' . $usuario->nome . '!');
-        return redirect('dashboard');
+        return redirect('/notas');
     }
 }
