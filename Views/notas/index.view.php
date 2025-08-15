@@ -11,17 +11,24 @@
 
  <div class=" bg-base-200 rounded-r-box w-full p-10 flex flex-col space-y-6">
      <form action="/nota" method="POST" id="form-atualizacao">
+         <?php $validacoes = flash()->get('validacoes'); ?>
          <input type="hidden" name="__method" value="PUT" />
          <input type="hidden" name="id" value="<?= $notaSelecionada->id ?>" />
          <div class="fieldset">
              <legend class="fieldset-legend">Titulo</legend>
              <input name="titulo" value="<?= $notaSelecionada->titulo ?>" type=" text" class="input w-full" placeholder="Type here" />
          </div>
+         <?php if (isset($validacoes['titulo'])): ?>
+             <div class="label text-xs text-error"><?= $validacoes['titulo'][0] ?></div>
+         <?php endif; ?>
 
          <fieldset class="fieldset">
              <legend class="fieldset-legend">Sua Nota</legend>
              <textarea name="nota" class="textarea h-24 w-full" placeholder="Bio"><?= $notaSelecionada->nota ?></textarea>
          </fieldset>
+         <?php if (isset($validacoes['nota'])): ?>
+             <div class="label text-xs text-error"><?= $validacoes['nota'][0] ?></div>
+         <?php endif; ?>
 
 
      </form>
