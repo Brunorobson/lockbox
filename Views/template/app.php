@@ -12,11 +12,13 @@
 </head>
 
 <body>
-    <div class="mx-auto max-w-screen-lg h-screen flex flex-col">
+    <div class="mx-auto max-w-screen-lg h-screen flex flex-col space-y-6">
 
         <?php require base_path('views/partials/navbar.view.php'); ?>
 
         <?php require base_path('views/partials/_pesquisar.view.php'); ?>
+        <?php require base_path('views/partials/_mensagem.view.php'); ?>
+
 
         <div class="flex flex-grow py-6">
             <?php require "../views/{$view}.view.php" ?>

@@ -29,7 +29,7 @@ class LoginController
         ], $_POST);
 
         if ($validacao->naoPassou()) {
-            return view('login');
+            return view('login', template: 'guest');
         }
 
         $database = new Database(config('database'));
