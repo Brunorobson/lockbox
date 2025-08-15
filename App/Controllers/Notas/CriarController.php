@@ -45,6 +45,6 @@ class CriarController
         );
 
         flash()->push('mensagem', 'Nota criada com sucesso!');
-        return redirect('/notas');
+        return redirect('/index');
     }
 }
