@@ -23,4 +23,31 @@ class Nota
             params: array_merge(['usuario_id' => auth()->id], $pesquisar ? ['pesquisar' => "%$pesquisar%"] : [])
         )->fetchAll();
     }
+
+    public static function update($id, $titulo, $nota)
+    {
+        $db = new Database(config('database'));
+        $db->query(
+            query: "
+            update notas 
+            set titulo = :titulo, 
+            nota = :nota 
+            where id = :id
+            ",
+            params: [
+                'titulo' => $titulo,
+                'nota' => $nota,
+                'id' => $id
+            ]
+        );
+    }
+
+    public static function delete($id)
+    {
+        $db = new Database(config('database'));
+        $db->query(
+            query: "delete from notas where id = :id",
+            params: ['id' => $id]
+        );
+    }
 }
