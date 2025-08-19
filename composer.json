@@ -1,0 +1,17 @@
+{
+    "name": "bruno.robson/lockbox",
+    "autoload": {
+        "psr-4": {
+            "BrunoRobson\\Lockbox\\": "src/",
+            "App\\": "App/",
+            "Core\\": "Core/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Brunorobson",
+            "email": "bruno.assis@alu.unibalsas.edu.br"
+        }
+    ],
+    "require": {}
+}
