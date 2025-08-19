@@ -24,7 +24,11 @@
 
          <fieldset class="fieldset">
              <legend class="fieldset-legend">Sua Nota</legend>
-             <textarea name="nota" class="textarea h-24 w-full" placeholder="Bio"><?= $notaSelecionada->nota ?></textarea>
+             <textarea
+                 <?php if (!session()->get('mostrar')): ?>
+                 disabled
+                 <?php endif; ?>
+                 name="nota" class="textarea h-24 w-full" placeholder="Bio"><?= $notaSelecionada->nota() ?></textarea>
          </fieldset>
          <?php if (isset($validacoes['nota'])): ?>
              <div class="label text-xs text-error"><?= $validacoes['nota'][0] ?></div>

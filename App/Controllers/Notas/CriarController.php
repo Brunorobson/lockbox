@@ -2,6 +2,7 @@
 
 namespace App\Controllers\Notas;
 
+use App\Models\Nota;
 use Core\Database;
 use Core\Validacao;
 
@@ -24,25 +25,19 @@ class CriarController
             'nota' => [
                 'required'
             ]
-        ], $_POST);
+        ], request()->all());
 
         if ($validacao->naoPassou()) {
             return view('/notas/criar');
         }
 
-        $database = new Database(config('database'));
+        Nota::create([
+            'usuario_id' => auth()->id,
+            'titulo' => request()->post('titulo'),
+            'nota' => encrypt(request()->post('nota')),
+        ]);
 
-        $database->query(
-            "insert into notas (usuario_id, titulo, nota, data_criacao, data_atualizacao) values (
-            :usuario_id, :titulo, :nota, :data_criacao, :data_atualizacao)",
-            params: [
-                'usuario_id' => auth()->id,
-                'titulo' => $_POST['titulo'],
-                'nota' => $_POST['nota'],
-                'data_criacao' => date('Y-m-d H:i:s'),
-                'data_atualizacao' => date('Y-m-d H:i:s')
-            ]
-        );
+
 
         flash()->push('mensagem', 'Nota criada com sucesso!');
         return redirect('/notas');

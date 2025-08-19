@@ -32,7 +32,7 @@ class RegisterController
                 'max:32',
                 'strong'
             ]
-        ], $_POST);
+        ], request()->all());
 
 
 
@@ -46,9 +46,9 @@ class RegisterController
         $database->query(
             "insert into usuarios (nome, email, senha) values (:nome, :email, :senha)",
             [
-                'nome' => $_POST['nome'],
-                'email' => $_POST['email'],
-                'senha' => password_hash($_POST['senha'], PASSWORD_DEFAULT)
+                'nome' => request()->post('nome'),
+                'email' => request()->post('email'),
+                'senha' => password_hash(request()->post('senha'), PASSWORD_DEFAULT)
             ]
         );
 
