@@ -78,3 +78,8 @@ function request()
 {
     return new Core\Request();
 }
+
+function session()
+{
+    return new Core\Session();
+}

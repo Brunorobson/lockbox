@@ -6,28 +6,20 @@ use App\Models\Nota;
 use Core\Database;
 use Core\Validacao;
 
-class AtualizarController
+class DeletarController
 {
     public function __invoke()
     {
 
         $validacao = Validacao::validar([
-            'titulo' => ['required', 'min:3', 'max:100'],
-            'nota' => ['required'],
             'id' => ['required']
         ], request()->all());
 
         if ($validacao->naoPassou()) {
             return redirect('/notas?id=' . request()->post('id'));
         }
-
-        Nota::update(
-            id: request()->post('id'),
-            titulo: request()->post('titulo'),
-            nota: request()->post('nota')
-        );
-
-        flash()->push('mensagem', 'Registro atualizado com sucesso!');
+        Nota::delete(request()->post('id'));
+        flash()->push('mensagem', 'Registro deletado com sucesso!');
         return redirect('/notas');
     }
 }
