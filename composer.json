@@ -13,5 +13,7 @@
             "email": "bruno.assis@alu.unibalsas.edu.br"
         }
     ],
-    "require": {}
+    "require-dev": {
+        "laravel/pint": "^1.24"
+    }
 }

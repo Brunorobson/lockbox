@@ -13,17 +13,17 @@
 
                 <legend class="fieldset-legend">Titulo</legend>
                 <input type="text" name="titulo" class="input w-full" placeholder="Type here" />
-                <?php if (isset($validacoes['titulo'])): ?>
+                <?php if (isset($validacoes['titulo'])) { ?>
                     <div class="label text-xs text-error"><?= $validacoes['titulo'][0] ?></div>
-                <?php endif; ?>
+                <?php } ?>
             </div>
 
             <fieldset class="fieldset">
                 <legend class="fieldset-legend">Sua Nota</legend>
                 <textarea class="textarea h-24 w-full" name="nota" placeholder="Bio"></textarea>
-                <?php if (isset($validacoes['nota'])): ?>
+                <?php if (isset($validacoes['nota'])) { ?>
                     <div class="label text-xs text-error"><?= $validacoes['nota'][0] ?></div>
-                <?php endif; ?>
+                <?php } ?>
             </fieldset>
 
             <div class="flex justify-end items-center">

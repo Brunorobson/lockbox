@@ -12,19 +12,19 @@ class IndexController
             request()->get('pesquisar', null)
         );
 
-        if (!$notaSelecionada = $this->getNotaSelecionada($notas)) {
+        if (! $notaSelecionada = $this->getNotaSelecionada($notas)) {
             return view('notas/nao-encontrada');
         }
-
 
         return view('notas/index', ['notas' => $notas, 'notaSelecionada' => $notaSelecionada]);
     }
 
     private function getNotaSelecionada($notas)
     {
-        $id = request()->get('id', (sizeof($notas) > 0 ? $notas[0]->id : null));
+        $id = request()->get('id', (count($notas) > 0 ? $notas[0]->id : null));
 
-        $filtro = array_filter($notas, fn($n) => $n->id == $id);
+        $filtro = array_filter($notas, fn ($n) => $n->id == $id);
+
         return array_pop($filtro);
     }
 }

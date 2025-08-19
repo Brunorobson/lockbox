@@ -10,12 +10,13 @@ class NotasVisualizarController
     {
         return view('notas/confirmar');
     }
+
     public function mostrar()
     {
         $validacao = Validacao::validar([
             'senha' => [
-                'required'
-            ]
+                'required',
+            ],
         ], request()->all());
 
         if ($validacao->naoPassou()) {
@@ -24,16 +25,19 @@ class NotasVisualizarController
 
         if (! password_verify(request()->post('senha'), auth()->senha)) {
             flash()->push('validacoes', ['senha' => ['Senha incorreta!']]);
+
             return view('/notas/confirmar');
         }
 
         session()->set('mostrar', true);
+
         return redirect('/notas');
     }
 
     public function esconder()
     {
         session()->forget('mostrar');
+
         return redirect('/notas');
     }
 }

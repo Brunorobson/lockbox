@@ -20,22 +20,19 @@ class RegisterController
                 'required',
                 'email',
                 'confirmed',
-                'unique:usuarios'
+                'unique:usuarios',
             ],
             'email_confirmacao' => [
                 'required',
-                'email'
+                'email',
             ],
             'senha' => [
                 'required',
                 'min:8',
                 'max:32',
-                'strong'
-            ]
+                'strong',
+            ],
         ], request()->all());
-
-
-
 
         if ($validacao->naoPassou()) {
             return view('registrar');
@@ -44,16 +41,16 @@ class RegisterController
         $database = new Database(config('database'));
 
         $database->query(
-            "insert into usuarios (nome, email, senha) values (:nome, :email, :senha)",
+            'insert into usuarios (nome, email, senha) values (:nome, :email, :senha)',
             [
                 'nome' => request()->post('nome'),
                 'email' => request()->post('email'),
-                'senha' => password_hash(request()->post('senha'), PASSWORD_DEFAULT)
+                'senha' => password_hash(request()->post('senha'), PASSWORD_DEFAULT),
             ]
         );
 
-
         flash()->push('mensagem', 'Usuário cadastrado com sucesso');
+
         return redirect('login');
     }
 }

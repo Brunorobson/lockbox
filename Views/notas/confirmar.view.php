@@ -20,9 +20,9 @@
                 class="input input-bordered w-full bg-white text-black"
                 placeholder="••••••••" />
 
-            <?php if (isset($validacoes['senha'])): ?>
+            <?php if (isset($validacoes['senha'])) { ?>
                 <div class="label text-xs text-error"><?= $validacoes['senha'][0] ?></div>
-            <?php endif; ?>
+            <?php } ?>
         </label>
 
         <button class="btn btn-primary w-full">

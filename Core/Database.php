@@ -7,9 +7,10 @@ use PDO;
 class Database
 {
     private $database;
+
     public function __construct($config)
     {
-        $connection = $config['driver'] . ':' . $config['database'];
+        $connection = $config['driver'].':'.$config['database'];
         $this->database = new PDO($connection);
     }
 
@@ -20,6 +21,7 @@ class Database
             $prepare->setFetchMode(PDO::FETCH_CLASS, $class);
         }
         $prepare->execute($params);
+
         return $prepare;
     }
 }

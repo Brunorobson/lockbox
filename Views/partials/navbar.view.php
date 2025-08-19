@@ -5,16 +5,15 @@
                <div class="flex-none">
                    <ul class="menu menu-horizontal px-1">
                        <li>
-                           <?php if (session()->get('mostrar')): ?>
+                           <?php if (session()->get('mostrar')) { ?>
                                <a href="/esconder"><i class="ph-fill ph-eye"></i></a>
-                           <?php else: ?>
+                           <?php } else { ?>
                                <a href="/confirmar"><i class="ph-fill ph-eye-slash"></i></a>
-                           <?php endif; ?>
+                           <?php } ?>
                        </li>
                        <li>
                            <details>
-                               <summary><?=
-                                        auth()->nome ?></summary>
+                               <summary><?= auth()->nome ?></summary>
                                <ul class="bg-base-100 rounded-t-none p-2">
                                    <li><a href="/logout">Logout</a></li>
                                </ul>

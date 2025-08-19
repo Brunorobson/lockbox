@@ -26,11 +26,11 @@
                     <div class="flex gap-1">
                         <?php
                         $nota = $filme->nota_avaliacao;
-                        for ($i = 1; $i <= 5; $i++):
-                            $classe = $i <= $nota ? 'ph-fill' : 'ph-light';
-                        ?>
+            for ($i = 1; $i <= 5; $i++) {
+                $classe = $i <= $nota ? 'ph-fill' : 'ph-light';
+                ?>
                             <i class="ph-star <?= $classe ?> text-purple-500 text-2xl"></i>
-                        <?php endfor; ?>
+                        <?php } ?>
                     </div>
                     <span class="text-slate-400 text-sm">
                         <?= fmod($nota ?? 0, 1) === 0.0 ? (int) $nota : number_format($nota, 1, ',', '') ?> / 5 (<?= $filme->count_avaliacoes ?> Avaliações)

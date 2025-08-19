@@ -4,7 +4,6 @@ namespace Core;
 
 class Route
 {
-
     public $routes = [];
 
     public function addRoute($httpMethod, $uri, $controller, $middleware = null)
@@ -14,7 +13,7 @@ class Route
             $data = [
                 'class' => $controller,
                 'method' => '__invoke',
-                'middleware' => $middleware
+                'middleware' => $middleware,
             ];
         }
 
@@ -22,7 +21,7 @@ class Route
             $data = [
                 'class' => $controller[0],
                 'method' => $controller[1],
-                'middleware' => $middleware
+                'middleware' => $middleware,
             ];
         }
 
@@ -38,7 +37,6 @@ class Route
 
         return $this;
     }
-
 
     public function post($uri, $controller, $middleware = null)
     {
@@ -66,12 +64,11 @@ class Route
         $uri = parse_url($_SERVER['REQUEST_URI'])['path'];
         $httpMethod = request()->post('__method', $_SERVER['REQUEST_METHOD']);
 
-        if (!isset($this->routes[$httpMethod][$uri])) {
+        if (! isset($this->routes[$httpMethod][$uri])) {
             abort(404);
         }
 
         $routeInfo = $this->routes[$httpMethod][$uri];
-
 
         $class = $routeInfo['class'];
         $method = $routeInfo['method'];

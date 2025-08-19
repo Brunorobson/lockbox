@@ -3,7 +3,6 @@
 namespace App\Controllers\Notas;
 
 use App\Models\Nota;
-use Core\Database;
 use Core\Validacao;
 
 class DeletarController
@@ -12,14 +11,15 @@ class DeletarController
     {
 
         $validacao = Validacao::validar([
-            'id' => ['required']
+            'id' => ['required'],
         ], request()->all());
 
         if ($validacao->naoPassou()) {
-            return redirect('/notas?id=' . request()->post('id'));
+            return redirect('/notas?id='.request()->post('id'));
         }
         Nota::delete(request()->post('id'));
         flash()->push('mensagem', 'Registro deletado com sucesso!');
+
         return redirect('/notas');
     }
 }

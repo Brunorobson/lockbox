@@ -1,6 +1,5 @@
 <?php
 
-
 use App\Controllers\IndexController;
 use App\Controllers\LoginController;
 use App\Controllers\LogoutController;
@@ -14,7 +13,7 @@ use App\Controllers\Notas\NotasVisualizarController;
 use App\Controllers\RegisterController;
 use Core\Route;
 
-(new Route())
+(new Route)
 
     ->get('/', IndexController::class, GuestMiddleware::class)
     ->get('/login', [LoginController::class, 'index'], GuestMiddleware::class)
@@ -22,8 +21,6 @@ use Core\Route;
 
     ->get('/registrar', [RegisterController::class, 'index'], GuestMiddleware::class)
     ->post('/registrar', [RegisterController::class, 'register'], GuestMiddleware::class)
-
-
 
     ->get('/logout', LogoutController::class, AuthMiddleware::class)
     ->get('/notas', NotasIndexController::class, AuthMiddleware::class)
@@ -38,11 +35,13 @@ use Core\Route;
     ->get('/esconder', [NotasVisualizarController::class, 'esconder'], AuthMiddleware::class)
     ->run();
 
-die();
+exit();
 
 $controller = str_replace('/', '', parse_url($_SERVER['REQUEST_URI'])['path']);
 
-if (!$controller) $controller = 'index';
+if (! $controller) {
+    $controller = 'index';
+}
 
 if (! file_exists("../controllers/{$controller}.controller.php")) {
     abort(404);

@@ -4,10 +4,9 @@ namespace App\Controllers\Middlewares;
 
 class AuthMiddleware
 {
-
     public function handle()
     {
-        if (!auth()) {
+        if (! auth()) {
             return redirect('/login');
         }
     }

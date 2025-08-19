@@ -35,13 +35,13 @@
                                         <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
                                     </g>
                                 </svg>
-                                <input type="text" name="email" value="<?= old("email") ?>" />
+                                <input type="text" name="email" value="<?= old('email') ?>" />
                             </label>
 
                         </label>
-                        <?php if (isset($validacoes['email'])): ?>
+                        <?php if (isset($validacoes['email'])) { ?>
                             <div class="label text-xs text-error"><?= $validacoes['email'][0] ?></div>
-                        <?php endif; ?>
+                        <?php } ?>
 
 
                         <label class="form-control">
@@ -65,9 +65,9 @@
                             </label>
 
                         </label>
-                        <?php if (isset($validacoes['senha'])): ?>
+                        <?php if (isset($validacoes['senha'])) { ?>
                             <div class="label text-xs text-error"><?= $validacoes['senha'][0] ?></div>
-                        <?php endif; ?>
+                        <?php } ?>
 
                         <div class="card-actions">
                             <button type="submit" class="btn btn-secondary-content	 btn-block">Login</button>

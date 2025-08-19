@@ -5,17 +5,18 @@ namespace Core;
 class Validacao
 {
     public $validacoes = [];
+
     public static function validar($regras, $dados)
     {
-        $validacao = new Validacao();
-        //pode ser $validacao = new self();
+        $validacao = new Validacao;
+        // pode ser $validacao = new self();
         foreach ($regras as $campo => $regrasDoCampo) {
             foreach ($regrasDoCampo as $regra) {
                 $valorDoCampo = $dados[$campo];
                 if ($regra == 'confirmed') {
                     $validacao->$regra($campo, $valorDoCampo, $dados["{$campo}_confirmacao"]);
                 } elseif (str_contains($regra, ':')) {
-                    $temp = explode(":", $regra);
+                    $temp = explode(':', $regra);
                     $regra = $temp[0];
                     $parametro = $temp[1];
                     $validacao->$regra($parametro, $campo, $valorDoCampo);
@@ -24,6 +25,7 @@ class Validacao
                 }
             }
         }
+
         return $validacao;
     }
 
@@ -43,6 +45,7 @@ class Validacao
             $this->addError($campo, "O $campo já existe");
         }
     }
+
     private function required($campo, $valor)
     {
         if (strlen($valor) == 0) {
@@ -52,7 +55,7 @@ class Validacao
 
     private function email($campo, $valor)
     {
-        if (!filter_var($valor, FILTER_VALIDATE_EMAIL)) {
+        if (! filter_var($valor, FILTER_VALIDATE_EMAIL)) {
             $this->addError($campo, "O campo $campo deve ser um email válido");
         }
     }
@@ -77,9 +80,10 @@ class Validacao
             $this->addError($campo, "O campo $campo deve ter no maximo $max caracteres");
         }
     }
+
     private function strong($campo, $valor)
     {
-        if (!strpbrk($valor, '!@#$%()*^&')) {
+        if (! strpbrk($valor, '!@#$%()*^&')) {
             $this->addError($campo, "O campo $campo deve conter pelo menos um caractere especial");
         }
     }
@@ -93,10 +97,11 @@ class Validacao
     {
         $chave = 'validacoes';
         if ($nomeCustomizado) {
-            $chave .= '_' . $nomeCustomizado;
+            $chave .= '_'.$nomeCustomizado;
         }
         flash()->push($chave, $this->validacoes);
-        //$_SESSION['validacoes'] = $this->validacoes;
-        return sizeof($this->validacoes) > 0;
+
+        // $_SESSION['validacoes'] = $this->validacoes;
+        return count($this->validacoes) > 0;
     }
 }

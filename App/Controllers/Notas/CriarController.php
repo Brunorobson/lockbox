@@ -3,12 +3,10 @@
 namespace App\Controllers\Notas;
 
 use App\Models\Nota;
-use Core\Database;
 use Core\Validacao;
 
 class CriarController
 {
-
     public function index()
     {
         return view('notas/criar');
@@ -20,11 +18,11 @@ class CriarController
             'titulo' => [
                 'required',
                 'min:3',
-                'max:100'
+                'max:100',
             ],
             'nota' => [
-                'required'
-            ]
+                'required',
+            ],
         ], request()->all());
 
         if ($validacao->naoPassou()) {
@@ -37,9 +35,8 @@ class CriarController
             'nota' => encrypt(request()->post('nota')),
         ]);
 
-
-
         flash()->push('mensagem', 'Nota criada com sucesso!');
+
         return redirect('/notas');
     }
 }

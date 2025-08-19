@@ -40,9 +40,9 @@
                                 <input type="text" name="nome" value="<?= old('nome') ?>" />
                             </label>
                         </label>
-                        <?php if (isset($validacoes['nome'])): ?>
+                        <?php if (isset($validacoes['nome'])) { ?>
                             <div class="label text-xs text-error"><?= $validacoes['nome'][0] ?></div>
-                        <?php endif; ?>
+                        <?php } ?>
 
                         <label class="form-control">
                             <div class="label">
@@ -64,10 +64,10 @@
                                     value="<?= old('email') ?>" />
                             </label>
                         </label>
-                        <?php if (isset($validacoes['email'])): ?>
+                        <?php if (isset($validacoes['email'])) { ?>
                             <div class=" label text-xs text-error"><?= $validacoes['email'][0] ?>
                             </div>
-                        <?php endif; ?>
+                        <?php } ?>
 
                         <label class="form-control">
                             <div class="label">
@@ -88,9 +88,9 @@
                                 <input type="text" name="email_confirmacao" value="<?= old('email_confirmacao') ?>" />
                             </label>
                         </label>
-                        <?php if (isset($validacoes['email_confirmacao'])): ?>
+                        <?php if (isset($validacoes['email_confirmacao'])) { ?>
                             <div class="label text-xs text-error"><?= $validacoes['email_confirmacao'][0] ?></div>
-                        <?php endif; ?>
+                        <?php } ?>
 
                         <label class="form-control">
                             <div class="label">
@@ -112,9 +112,9 @@
                                 <input type="password" name="senha" />
                             </label>
                         </label>
-                        <?php if (isset($validacoes['senha'])): ?>
+                        <?php if (isset($validacoes['senha'])) { ?>
                             <div class="label text-xs text-error"><?= $validacoes['senha'][0] ?></div>
-                        <?php endif; ?>
+                        <?php } ?>
 
                         <div class="card-actions">
                             <button type="submit" class="btn btn-secondary-content btn-block">Registrar</button>
